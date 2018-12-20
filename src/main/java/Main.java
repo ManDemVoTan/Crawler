@@ -13,11 +13,18 @@ public class Main {
             List<Article> articles = ArticleUtils.getArticleList(doc);
             System.out.println("page:" + doc.title());
             System.out.println("article count: " + articles.size());
+
+            for (Article article : articles) {
+                System.out.println("url: " + article.getDetailUrl());
+                Document detailDoc = Jsoup.connect(article.getDetailUrl()).get();
+                ArticleUtils.parse(detailDoc, article);
+            }
+
             for (Article article : articles) {
                 System.out.println("title: " + article.getTitle());
                 System.out.println("url: " + article.getDetailUrl());
-                Document detailDoc = Jsoup.connect(PageConst.DAN_TRI_FULL_URL + article.getDetailUrl()).get();
-                ArticleUtils.parse(detailDoc, article);
+                System.out.println("img: " + article.getMainImageUrl());
+                System.out.println("content: " + article.getContent());
             }
 
         } catch (IOException e) {
