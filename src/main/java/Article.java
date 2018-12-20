@@ -3,6 +3,12 @@ package main.java;
 public class Article {
 
     private String title;
+    private String detailUrl;
+    private String mainImageUrl;
+    private String content;
+
+    public Article() {
+    }
 
     public String getTitle() {
         return title;
@@ -28,6 +34,11 @@ public class Article {
         this.mainImageUrl = mainImageUrl;
     }
 
-    private String detailUrl;
-    private String mainImageUrl;
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

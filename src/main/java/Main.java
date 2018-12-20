@@ -16,6 +16,8 @@ public class Main {
             for (Article article : articles) {
                 System.out.println("title: " + article.getTitle());
                 System.out.println("url: " + article.getDetailUrl());
+                Document detailDoc = Jsoup.connect(PageConst.DAN_TRI_FULL_URL + article.getDetailUrl()).get();
+                ArticleUtils.parse(detailDoc, article);
             }
 
         } catch (IOException e) {

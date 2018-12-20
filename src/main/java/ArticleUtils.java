@@ -7,8 +7,8 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticleUtils {
-    public static List<Article> getArticleList(Document doc) {
+class ArticleUtils {
+    static List<Article> getArticleList(Document doc) {
         List<Article> articles = new ArrayList<Article>();
         Elements hrefs = doc.getElementsByTag("a");
         for (Element aTag : hrefs) {
@@ -16,9 +16,24 @@ public class ArticleUtils {
                 Article article = new Article();
                 article.setTitle(aTag.attr("title"));
                 article.setDetailUrl(aTag.attr("href"));
+
+                Elements imgTags = aTag.getElementsByTag("img");
+                for (Element imgTag : imgTags) {
+                    article.setMainImageUrl(imgTag.attr("src"));
+                }
+
                 articles.add(article);
             }
         }
         return articles;
     }
+
+    static Article parse(Document doc, Article article) {
+        Element divContent = doc.getElementById("divNewsContent");
+        article.setContent(divContent.text());
+
+
+        return article;
+    }
+
 }
