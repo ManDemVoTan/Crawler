@@ -13,6 +13,11 @@ public class Main {
             List<Article> articles = ArticleUtils.getArticleList(doc);
             System.out.println("page:" + doc.title());
             System.out.println("article count: " + articles.size());
+            for (Article article : articles) {
+                System.out.println("title: " + article.getTitle());
+                System.out.println("url: " + article.getDetailUrl());
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

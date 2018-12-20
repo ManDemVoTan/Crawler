@@ -15,7 +15,7 @@ public class ArticleUtils {
             if (aTag.text().contains(">>")) {
                 Article article = new Article();
                 article.setTitle(aTag.attr("title"));
-                article.setDetailUrl(aTag.attr("src"));
+                article.setDetailUrl(aTag.attr("href"));
                 articles.add(article);
             }
         }
